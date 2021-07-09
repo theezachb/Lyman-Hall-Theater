@@ -90,7 +90,7 @@ function daysInMonth(calDate) {
 			dayCount[1] = 29;
 		}
 	}
-
+	
 	// Return the number of days for the current month
 	return dayCount[thisMonth];	
 }
