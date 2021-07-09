@@ -74,3 +74,23 @@ function calWeekdayRow() {
     rowHTML += "</tr>";
     return rowHTML;
 }
+
+/* Function to calculate the number of days in the month */
+function daysInMonth(calDate) {
+	// Array of days in each month
+	let dayCount = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+	// Extract the four digit year and month value
+	let thisYear = calDate.getFullYear();
+	let thisMonth = calDate.getMonth();
+
+	// Revise the days in Febuary for leap years
+	if (thisYear % 4 === 0) {
+		if ((thisYear % 100 != 0) || (thisYear % 400 === 0)) {
+			dayCount[1] = 29;
+		}
+	}
+
+	// Return the number of days for the current month
+	return dayCount[thisMonth];	
+}
