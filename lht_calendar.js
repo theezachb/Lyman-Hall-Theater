@@ -41,6 +41,7 @@ function createCalendar(calDate) {
    let calendarHTML = "<table id='calendar_table'>";
    calendarHTML += calCaption(calDate);
    calendarHTML += calWeekdayRow();
+   calendarHTML += calDays(calDate);
    calendarHTML +="</table>";
    return calendarHTML;
 }
@@ -94,3 +95,33 @@ function daysInMonth(calDate) {
 	// Return the number of days for the current month
 	return dayCount[thisMonth];	
 }
+
+/* Function to write table rows for each day of the month */
+function calDays(calDate) {
+
+	// Determine the starting day of the month
+	let day = new Date(calDate.getFullYear(), calDate.getMonth(), 1);
+	let weekDay = day.getDat();
+
+	// Write blank cells preceding the starting day
+	let htmlCode = "<tr>";
+	for (let i = 0; i <= weekDay; i++) {
+		htmlCode += "<td></td>";
+	}
+
+	// Write cells for each day of the month
+	let totalDays = daysInMonth(calDate);
+	
+	for (let i = 1; i <= totalDays; i++) {
+		day.setDate(i);
+		weekDay = day.getDay();
+
+		if (weekDay === 0) htmlCode += "<tr>";
+		htmlCode += "<td class='calendar_dates'>" + i + "</td>";
+		if weekDay === 6) htmCode =+ "</tr>";
+	}
+	
+	return htmlCode;	
+
+}
+
